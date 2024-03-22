@@ -1,6 +1,25 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import HelloWorld from './components/HelloWorld.vue';
+import TheWelcome from './components/TheWelcome.vue';
+import { ref } from 'vue';
+
+let count = ref(0);
+function operation(operator) {
+  switch (operator) {
+    case 'minus10': count.value -= 10;
+      break;
+    case 'minus': count.value--;
+      break;
+    case 'plus': count.value++;
+      break;
+    case 'plus10': count.value += 10;
+      break;
+    case 'reset': count.value = 0;
+      break;
+    // default: "";
+  }
+}
+
 </script>
 
 <template>
@@ -13,7 +32,14 @@ import TheWelcome from './components/TheWelcome.vue'
   </header>
 
   <main>
-    <TheWelcome />
+    <button @click="operation('minus10')">-10</button>
+    <button @click="operation('minus')">-</button>
+    <span> {{ count }}</span>
+    <button @click="operation('plus')">+</button>
+    <button @click="operation('plus10')">+10</button>
+    <button @click="operation('reset')">Reset</button>
+
+    <!-- <TheWelcome /> -->
   </main>
 </template>
 
