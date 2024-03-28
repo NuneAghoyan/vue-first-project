@@ -1,56 +1,75 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue';
-import TheWelcome from './components/TheWelcome.vue';
-import { ref } from 'vue';
-
-let count = ref(0);
-function operation(operator) {
-  switch (operator) {
-    case 'minus10': count.value -= 10;
-      break;
-    case 'minus': count.value--;
-      break;
-    case 'plus': count.value++;
-      break;
-    case 'plus10': count.value += 10;
-      break;
-    case 'reset': count.value = 0;
-      break;
-    // default: "";
+<script>
+export default {
+  data() {
+    return {
+      email: ""
+    };
+  },
+  methods: {
+    emailInput() {
+      this.email = prompt("Enter your email:");
+    },
+    resetEmail() {
+      this.email = "";
+    },
+    validateEmail(userEmail) {
+      return /^[a-z0-9._-]+@[a-z]+\.[a-z]{2,4}$/.test(userEmail);
+    }
   }
 }
-
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
   </header>
 
   <main>
-    <button @click="operation('minus10')">-10</button>
-    <button @click="operation('minus')">-</button>
-    <span> {{ count }}</span>
-    <button @click="operation('plus')">+</button>
-    <button @click="operation('plus10')">+10</button>
-    <button @click="operation('reset')">Reset</button>
 
-    <!-- <TheWelcome /> -->
+    <button @click="emailInput()">Input Email</button>
+    <button @click="resetEmail()">Reset</button>
+    <div class="green-border" v-show="validateEmail(email)">
+      <h1>{{ email }}</h1>
+      <h4>The email is valid.</h4>
+    </div>
+    <div class="red-border" v-show="!validateEmail(email) && email">
+      <h1>{{ email }}</h1>
+      <h4>The email is invalid.</h4>
+    </div>
+
+    <!-- <div class="red-border" v-if="!validateEmail(email) && email">
+      <h1>{{ email }}</h1>
+      <h4>The email is invalid.</h4>
+    </div>
+    <div class="green-border" v-else-if="validateEmail(email) && email">
+      <h1>{{ email }}</h1>
+      <h4>The email is valid.</h4>
+    </div> -->
+
   </main>
+
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+.green-border {
+  border: 2px solid green;
+  padding: 6px;
+  margin-top: 6px;
+  border-radius: 8px;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.red-border {
+  border: 2px solid red;
+  padding: 6px;
+  margin-top: 6px;
+  border-radius: 8px;
+}
+
+button {
+  margin-right: 10px;
+}
+
+header {
+  line-height: 1.5;
 }
 
 @media (min-width: 1024px) {
@@ -58,10 +77,6 @@ header {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
   }
 
   header .wrapper {
