@@ -4,7 +4,6 @@ export default {
     return {
       count: 0,
       amount: 0,
-      currencyText: "AMD -> USD",
       currencyBtn: "USD -> AMD"
     };
   },
@@ -12,46 +11,37 @@ export default {
   methods: {
     handleInputChange(event) {
       this.count = event.target.value;
-      if (this.currencyText === "USD -> AMD") {
+      if (this.currencyBtn === "AMD -> USD") {
         this.amount = this.count * 400;
       } else {
         this.amount = this.count / 400;
       }
     },
-
-    currencyChange() {
-      const amd = "AMD -> USD";
-      const usd = "USD -> AMD";
-
-      if (this.currencyBtn === usd) {
-        this.currencyBtn = amd;
-        this.currencyText = usd;
-
+    changeCurrencyBtn() {
+      this.count = 0;
+      this.amount = 0;
+      if (this.currencyBtn === "USD -> AMD") {
+        this.currencyBtn = "AMD -> USD";
       } else {
-        this.currencyText = amd;
-        this.currencyBtn = usd;
+        this.currencyBtn = "USD -> AMD";
       }
-
-      let count = this.count;
-      this.count = this.amount;
-      this.amount = count;
-
-      // this.count = 0;
-      // this.amount = 0;
     },
-
-    // inputClick(event) {
-    //   this.count = this.count === 0 ? "" : event.target.value;
-    // }
+    currencyChange() {
+      return this.currencyBtn === "USD -> AMD"
+    },
+    inputClick(event) {
+      this.count = this.count === 0 ? "" : event.target.value;
+    }
   }
 }
 </script>
 
 <template>
-  <h4>{{ currencyText }}</h4>
+  <h4 v-if="currencyChange()">AMD -> USD</h4>
+  <h4 v-else>USD -> AMD</h4>
   <input type="number" :value="count" @input="handleInputChange" @click="inputClick">
   <input type="number" :value="amount" disabled>
-  <div><button @click="currencyChange">{{ currencyBtn }}</button></div>
+  <div><button @click="changeCurrencyBtn()">{{ currencyBtn }}</button></div>
 </template>
 
 <style scoped>
