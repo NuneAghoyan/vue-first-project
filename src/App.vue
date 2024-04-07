@@ -40,10 +40,9 @@ export default {
 
 <template>
   <main>
-    <Product v-for="(fruit) of fruits" 
-    :name="fruit.name" 
-    :price="fruit.price" 
-    :description="fruit.description"
+    <Product v-for="fruit of fruits" 
+    :key="fruit.name"  
+    :fruit="fruit"
     />
   </main>
 </template>

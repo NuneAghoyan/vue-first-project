@@ -1,7 +1,7 @@
 <script>
 export default {
   props: {
-    description: {
+    value: {
       type: String,
       required: true
     }
@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
- <h2>Fruit description: {{description}}</h2>
+ <h2>Fruit description: {{value}}</h2>
 </template>
 
 

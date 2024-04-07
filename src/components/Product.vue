@@ -9,17 +9,9 @@ export default {
     Description
   },
   props: {
-    name: {
-      type: String,
-      required: true
-    },
-    price: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      required: true
+    fruit: {
+        type: Object,
+        required: true
     }
    }
   }
@@ -28,9 +20,9 @@ export default {
 <template>
   <main>
    <div>
-    <Name  :name="name" />
-    <Price :price='price' />
-    <Description :description='description' />
+    <Name  :value="fruit.name" />
+    <Price :value="fruit.price" />
+    <Description :value="fruit.description" />
    </div>
   </main>
 </template>

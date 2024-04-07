@@ -1,7 +1,7 @@
 <script>
 export default {
   props: {
-    price: {
+    value: {
       type: String,
       required: true
     }
@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
- <h2>Fruit price: {{price}}</h2>
+ <h2>Fruit price: {{value}}</h2>
 </template>
 
 
