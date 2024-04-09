@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     onChangeCurrency(index) {
-      let fruit = this.fruits[index]
+      let fruit = this.fruits[index];
       if (fruit.price[fruit.price.length - 1] === "$") {
         fruit.price = parseFloat(fruit.price) * 400 + "֏";
       } else {
