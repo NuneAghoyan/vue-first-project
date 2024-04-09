@@ -35,14 +35,17 @@ export default {
       ]
     };
   },
+  methods: {
+    onChange(price, index) {
+      this.fruits[index].price = price;
+    },
+  }
 }
 </script>
 
 <template>
   <main>
-    <Product v-for="fruit of fruits" 
-    :key="fruit.name"  
-    :fruit="fruit"
-    />
+    <Product v-for="(fruit, index) in fruits" :key="fruit.name" :fruit="fruit" :index="index"
+      @changeCurrency="onChange" />
   </main>
 </template>

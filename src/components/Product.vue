@@ -10,29 +10,40 @@ export default {
   },
   props: {
     fruit: {
-        type: Object,
-        required: true
-    }
-   }
+      type: Object,
+      required: true
+    },
+    // index: {
+    //   type: Number,
+    //   required: true
+    // }
+  },
+  methods: {
+    onChange(price) {
+      this.fruit.price = price;
+      this.$emit('changeCurrency', price);
+
+    },
   }
+}
 </script>
 
 <template>
   <main>
-   <div>
-    <Name  :value="fruit.name" />
-    <Price :value="fruit.price" />
-    <Description :value="fruit.description" />
-   </div>
+    <div>
+      <Name :value="fruit.name" />
+      <Price :value="fruit.price" @changeCurrency="onChange" />
+      <Description :value="fruit.description" />
+    </div>
   </main>
 </template>
 
 <style scoped>
- div{
+div {
   background-color: rgb(239, 228, 249);
   border: 2px solid blueviolet;
   border-radius: 5px;
   margin: 10px;
   padding: 5px;
-    }
+}
 </style>
