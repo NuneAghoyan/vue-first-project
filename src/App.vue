@@ -36,16 +36,20 @@ export default {
     };
   },
   methods: {
-    onChange(price, index) {
-      this.fruits[index].price = price;
-    },
+    onChangeCurrency(index) {
+      if (this.fruits[index].price[this.fruits[index].price.length - 1] === "$") {
+        this.fruits[index].price = parseFloat(this.fruits[index].price) * 400 + "֏";
+      } else {
+        this.fruits[index].price = parseFloat(this.fruits[index].price) / 400 + "$";
+      }
+    }
   }
 }
 </script>
 
 <template>
   <main>
-    <Product v-for="(fruit, index) in fruits" :key="fruit.name" :fruit="fruit" :index="index"
-      @changeCurrency="onChange" />
+    <Product v-for="(fruit, index) in fruits" :key="fruit.name" :fruit="fruit"
+      @changeCurrency="onChangeCurrency(index)" />
   </main>
 </template>

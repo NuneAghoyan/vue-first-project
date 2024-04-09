@@ -13,16 +13,10 @@ export default {
       type: Object,
       required: true
     },
-    // index: {
-    //   type: Number,
-    //   required: true
-    // }
   },
   methods: {
-    onChange(price) {
-      this.fruit.price = price;
-      this.$emit('changeCurrency', price);
-
+    onChange() {
+      this.$emit('changeCurrency');
     },
   }
 }
@@ -32,7 +26,8 @@ export default {
   <main>
     <div>
       <Name :value="fruit.name" />
-      <Price :value="fruit.price" @changeCurrency="onChange" />
+      <Price :value="fruit.price" @changeCurrency="onChangeCurrency" />
+      <button @click="onChange"> Change the currency</button>
       <Description :value="fruit.description" />
     </div>
   </main>
