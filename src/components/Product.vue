@@ -26,7 +26,7 @@ export default {
   <main>
     <div>
       <Name :value="fruit.name" />
-      <Price :value="fruit.price" @changeCurrency="onChangeCurrency" />
+      <Price :value="fruit.price" />
       <button @click="onChange"> Change the currency</button>
       <Description :value="fruit.description" />
     </div>
